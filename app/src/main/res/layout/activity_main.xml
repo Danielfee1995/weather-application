@@ -7,9 +7,11 @@
     android:background="#2495d1"
     android:orientation="vertical"
     android:weightSum="8"
-    tools:context="mg.studio.weatherappdesign.MainActivity">
+    tools:context="com.example.legendpeng.weather_application.MainActivity">
 
+<!--设置星期-->
     <TextView
+        android:id="@+id/week"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
@@ -20,7 +22,7 @@
         android:textColor="#10000000"
         android:textSize="36sp"
         android:textStyle="bold" />
-
+<!--控件，点击button来更新-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -57,7 +59,7 @@
             android:text="Go to Calendar"
             android:textColor="#50ffffff" />
     </LinearLayout>
-
+<!--设置地址和日期-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -118,7 +120,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="right"
-                    android:text="28"
+                    android:text="11"
                     android:textColor="@android:color/white"
                     android:textSize="100sp"
                     android:textStyle="bold" />
@@ -131,10 +133,25 @@
                     android:gravity="right"
                     android:text="°C"
                     android:textColor="@android:color/white"
-                    android:textSize="22sp" />
+                    android:textSize="22sp"
+                    android:id="@+id/textView" />
+
+
 
 
             </RelativeLayout>
+
+            <ImageButton
+                android:id="@+id/imageButton8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/linearLayout"
+                android:layout_marginTop="22dp"
+                android:layout_toLeftOf="@+id/tv_temperature"
+                android:layout_toStartOf="@+id/tv_temperature"
+                android:background="@android:color/transparent"
+                android:onClick="btncirClick"
+                app:srcCompat="@drawable/circlebutton" />
 
 
         </RelativeLayout>
@@ -151,8 +168,7 @@
                 android:src="@drawable/design" />
         </LinearLayout>
     </LinearLayout>
-
-
+<!--设置天气图像 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -168,6 +184,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
+
             android:orientation="vertical">
 
             <ImageView
@@ -176,12 +193,22 @@
                 app:srcCompat="@drawable/rainy_small" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/cicle"
                 android:gravity="center"
                 android:text="mon"
                 android:textAllCaps="true"
                 android:textColor="#909090" />
+
+            <!--<ImageView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center"-->
+            <!--android:text="mon"-->
+            <!--android:background="@drawable/cicle"-->
+            <!--android:textAllCaps="true"-->
+            <!--android:textColor="#909090" />-->
         </LinearLayout>
 
         <LinearLayout
@@ -197,8 +224,9 @@
                 app:srcCompat="@drawable/partly_sunny_small" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/circlebuttonorange"
                 android:gravity="center"
                 android:text="tue"
                 android:textAllCaps="true"
@@ -218,8 +246,9 @@
                 app:srcCompat="@drawable/windy_small" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/circlebuttonred"
                 android:gravity="center"
                 android:text="thu"
                 android:textAllCaps="true"
@@ -239,8 +268,9 @@
                 app:srcCompat="@drawable/sunny_small" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/cicle"
                 android:gravity="center"
                 android:text="fri"
                 android:textAllCaps="true"
