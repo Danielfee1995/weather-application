@@ -8,6 +8,16 @@ the tips of the first achieve assigment
 Here is the design we need to achieve.
 ![](https://github.com/Danielfee1995/weather-application/blob/master/photo/design.jpg)
 
+add the photo as the roundicon.and then change the XML file.android:icon and the android:roundicon
+```
+        android:allowBackup="true"
+        android:icon="@drawable/weather_icon"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/weather_icon"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity android:name=".MainActivity">
+```
 add the different color backbrounds.and then change the layout_width and layout_height the same to circle. the backgroud use 
 different circle XML files.in those files the color and the size are different.
 
