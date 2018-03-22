@@ -1,5 +1,8 @@
 package com.example.legendpeng.weather_application;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -34,50 +37,73 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
+import  android.app.Activity;
 
 
 public class MainActivity extends AppCompatActivity {
 
+    private android.util.Log log;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
-
-    public void btnClick(View view) {
+        //开机启动：
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-HH:mm");
         SimpleDateFormat formatweek = new SimpleDateFormat("EEEE", Locale.ENGLISH);
         String t=format.format(new Date());
         String week=formatweek.format(new Date());
         ((TextView) findViewById(R.id.tv_date)).setText(t);
-
         ((TextView) findViewById(R.id.week)).setText(week);
         new DownloadUpdate().execute();
+
+        if(CheckNet.getNetState(this)==CheckNet.NET_NONE)
+        {
+            log.d("网络状态："," 网络断开");
+            Toast.makeText(MainActivity.this, "网络断开", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            log.d("网络状态："," 网络可用");
+            Toast.makeText(MainActivity.this, "网络可用", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+//    private Context activity;
+//    Context context=activity.getApplicationContext();
+//    ConnectivityManager connectivityManager=
+//            (connectivityManager)context.getSystemService(context.CONNECTIVITY_SERVICE);
+
+
+
+    public void btnClick(View view) {
+
         Toast.makeText(this, "click the button", Toast.LENGTH_SHORT).show();
     }
 
     public void btncirClick(View view) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-HH:mm");
+        SimpleDateFormat formatweek = new SimpleDateFormat("EEEE", Locale.ENGLISH);
+        String t=format.format(new Date());
+        String week=formatweek.format(new Date());
+        ((TextView) findViewById(R.id.tv_date)).setText(t);
+        ((TextView) findViewById(R.id.week)).setText(week);
         new DownloadUpdate().execute();
         Toast.makeText(this, "click the reflesh button", Toast.LENGTH_SHORT).show();
     }
 
 
 
-    private android.util.Log log;
     private class DownloadUpdate extends AsyncTask<String, Void, String> {
-
-
-
 
         @Override
         protected String doInBackground(String... strings) {
+
+
+
             String stringUrl = "http://wthrcdn.etouch.cn/WeatherApi?citykey=101040100";
 
             HttpURLConnection urlConnection = null;
            BufferedReader reader;
-
-
 
             try {
                 URL url = new URL(stringUrl);
@@ -87,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
 
                 urlConnection.setRequestMethod("GET");
                 urlConnection.connect();
+
 
                 // Read the input stream into a String
                 InputStream inputStream = urlConnection.getInputStream();
@@ -117,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 //The temperature
 
-                log.d("buff are:",buffer.toString());
+                log.i("buff are:",buffer.toString());
 
                 return buffer.toString();
                 //return location;
